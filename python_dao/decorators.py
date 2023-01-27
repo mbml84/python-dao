@@ -15,10 +15,10 @@ from python_dao.exceptions import NoResultFound
 
 def build_fetch_decorator(
         cache_adapter: CacheAdapter | None = None,
-        result_formatter: Callable[[Any], dict[str, Any]] | None = None,
-) -> Callable:
+        result_formatter: Callable[[Any], dict[str, Any]] = dict,
+) -> Callable[[Callable[[Any], object], bool, bool, bool, int], Callable]:
     """
-    Create a decorator for fetching operation.
+    Create a decorator factory for fetching operation.
 
     Args:
         cache_adapter (CacheAdapter): The caching object if caching is needed.
@@ -26,19 +26,22 @@ def build_fetch_decorator(
             Default : None
         result_formatter (Callable[[Any], dict[str, Any]]): A callable to format the raw output
             into a dictionary of attributes.
-            Default : none
+            Default : dict
 
     Returns:
-        Callable: A fetch decorator factory
+        Callable[[Callable[[Any], object], bool, bool, bool, int], Callable]:
+            A fetch decorator factory
     """
+
     def decorator_factory(
         cls: Callable[[Any], object],
         many: bool = True,
         raise_exception: bool = False,
         retrieve_from_cache: bool = True,
         cache_time: int = 0,
-    ) -> Callable:
+    ) -> Callable[[Callable], Callable]:
         """
+        Create a decorator for fetching operation.
 
         Args:
             cls (Callable[[Any], object]): A callable that will create an object.
@@ -55,9 +58,10 @@ def build_fetch_decorator(
                 Default : 0
 
         Returns:
-            Callable: A decorator factory
+            Callable[[Callable], Callable]: A decorator factory
         """
-        def decorator(func: Callable):
+
+        def decorator(func: Callable) -> Callable:
             def wrapper(*args, **kwargs):
 
                 results = (
@@ -68,8 +72,6 @@ def build_fetch_decorator(
 
                 if not results:
                     results = func(*args, **kwargs)
-                    if result_formatter:
-                        results = result_formatter(results)
 
                     if not results and raise_exception:
                         raise NoResultFound()
@@ -85,7 +87,7 @@ def build_fetch_decorator(
                             ), cache_time,
                         )
 
-                    results = [cls(**attributes) for attributes in results]
+                    results = [cls(**result_formatter(result)) for result in results]
 
                     if not many:
                         results = results[0] if results else None
