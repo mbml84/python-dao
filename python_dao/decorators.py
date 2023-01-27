@@ -16,7 +16,7 @@ from python_dao.exceptions import NoResultFound
 def build_fetch_decorator(
         cache_adapter: CacheAdapter | None = None,
         result_formatter: Callable[[Any], dict[str, Any]] = dict,
-) -> Callable:
+) -> Callable[[Callable[[Any], object], bool, bool, bool, int], Callable]:
     """
     Create a decorator factory for fetching operation.
 
@@ -29,7 +29,8 @@ def build_fetch_decorator(
             Default : dict
 
     Returns:
-        Callable: A fetch decorator factory
+        Callable[[Callable[[Any], object], bool, bool, bool, int], Callable]:
+            A fetch decorator factory
     """
 
     def decorator_factory(
@@ -38,7 +39,7 @@ def build_fetch_decorator(
         raise_exception: bool = False,
         retrieve_from_cache: bool = True,
         cache_time: int = 0,
-    ) -> Callable:
+    ) -> Callable[[Callable], Callable]:
         """
         Create a decorator for fetching operation.
 
@@ -57,10 +58,10 @@ def build_fetch_decorator(
                 Default : 0
 
         Returns:
-            Callable: A decorator factory
+            Callable[[Callable], Callable]: A decorator factory
         """
 
-        def decorator(func: Callable):
+        def decorator(func: Callable) -> Callable:
             def wrapper(*args, **kwargs):
 
                 results = (
