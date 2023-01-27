@@ -1,3 +1,6 @@
+"""
+Results formatters
+"""
 from __future__ import annotations
 
 from typing import Any
@@ -8,7 +11,10 @@ class DictFormatter:
     A default formatter
     """
 
-    def __call__(self, results: dict[str, Any] | list[tuple[str, Any]]) -> list[dict[str, Any]]:
+    def __call__(
+            self,
+            results: list[dict[str, Any] | list[tuple[str, Any]]],
+    ) -> list[dict[str, Any]]:
         return list(map(dict, results))
 
 
