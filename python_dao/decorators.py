@@ -12,6 +12,7 @@ from python_dao.cache.adapters import CacheAdapter
 from python_dao.cache.utils import create_key
 from python_dao.exceptions import MultipleResultFound
 from python_dao.exceptions import NoResultFound
+from python_dao.formatters import DictFormatter
 
 
 @dataclass(frozen=True)
@@ -23,13 +24,13 @@ class DecoratorFactory:
         cache_adapter (CacheAdapter): The caching object if caching is needed.
             If None is passed, there will be no caching.
             Default : None
-        result_formatter (Callable[[Any], dict[str, Any]]): A callable to format the raw output
-            into a dictionary of attributes.
-            Default : dict
+        result_formatter (Callable[[Any], list[dict[str, Any]]]): A callable to format
+            the raw output into a dictionary of attributes.
+            Default : DictFormatter
     """
 
     cache_adapter: CacheAdapter | None = None
-    result_formatter: Callable[[Any], dict[str, Any]] = dict
+    result_formatter: Callable[[Any], list[dict[str, Any]]] = DictFormatter()
 
     def __call__(
             self,
@@ -70,7 +71,7 @@ class DecoratorFactory:
                 )
 
                 if not results:
-                    results = func(*args, **kwargs)
+                    results = self.result_formatter(func(*args, **kwargs))
 
                     if not results and raise_exception:
                         raise NoResultFound(func)
@@ -84,7 +85,7 @@ class DecoratorFactory:
                             cache_key, pickle.dumps(results), cache_time,
                         )
 
-                    results = [cls(**self.result_formatter(result)) for result in results]
+                    results = [cls(**result) for result in results]
 
                     if not many:
                         results = results[0] if results else None
