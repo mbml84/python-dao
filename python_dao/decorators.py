@@ -3,7 +3,7 @@ Decorators
 """
 from __future__ import annotations
 
-import json
+import pickle
 from typing import Any
 from typing import Callable
 
@@ -82,9 +82,7 @@ def build_fetch_decorator(
                     if cache_time:
                         cache_key = create_key(*args, **kwargs)
                         cache_adapter.set(
-                            cache_key, json.dumps(results).encode(
-                                'utf-8',
-                            ), cache_time,
+                            cache_key, pickle.dumps(results), cache_time,
                         )
 
                     results = [cls(**result_formatter(result)) for result in results]
