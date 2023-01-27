@@ -4,6 +4,7 @@ Decorators
 from __future__ import annotations
 
 import pickle
+from dataclasses import dataclass
 from typing import Any
 from typing import Callable
 
@@ -13,32 +14,30 @@ from python_dao.exceptions import MultipleResultFound
 from python_dao.exceptions import NoResultFound
 
 
-def build_fetch_decorator(
-        cache_adapter: CacheAdapter | None = None,
-        result_formatter: Callable[[Any], dict[str, Any]] = dict,
-) -> Callable[[Callable[[Any], object], bool, bool, bool, int], Callable]:
+@dataclass(frozen=True)
+class DecoratorFactory:
     """
     Create a decorator factory for fetching operation.
 
-    Args:
+    Attributes:
         cache_adapter (CacheAdapter): The caching object if caching is needed.
             If None is passed, there will be no caching.
             Default : None
         result_formatter (Callable[[Any], dict[str, Any]]): A callable to format the raw output
             into a dictionary of attributes.
             Default : dict
-
-    Returns:
-        Callable[[Callable[[Any], object], bool, bool, bool, int], Callable]:
-            A fetch decorator factory
     """
 
-    def decorator_factory(
-        cls: Callable[[Any], object],
-        many: bool = True,
-        raise_exception: bool = False,
-        retrieve_from_cache: bool = True,
-        cache_time: int = 0,
+    cache_adapter: CacheAdapter | None = None
+    result_formatter: Callable[[Any], dict[str, Any]] = dict
+
+    def __call__(
+            self,
+            cls: Callable[[Any], object],
+            many: bool = True,
+            raise_exception: bool = False,
+            retrieve_from_cache: bool = True,
+            cache_time: int = 0,
     ) -> Callable[[Callable], Callable]:
         """
         Create a decorator for fetching operation.
@@ -58,15 +57,15 @@ def build_fetch_decorator(
                 Default : 0
 
         Returns:
-            Callable[[Callable], Callable]: A decorator factory
+            Callable[[Callable], Callable]: A decorator
         """
 
         def decorator(func: Callable) -> Callable:
             def wrapper(*args, **kwargs):
 
                 results = (
-                    cache_adapter.get(*args, **kwargs)
-                    if cache_adapter and retrieve_from_cache
+                    self.cache_adapter.get(create_key(*args, **kwargs))
+                    if self.cache_adapter and retrieve_from_cache
                     else None
                 )
 
@@ -74,18 +73,18 @@ def build_fetch_decorator(
                     results = func(*args, **kwargs)
 
                     if not results and raise_exception:
-                        raise NoResultFound()
+                        raise NoResultFound(func)
 
                     if not many and len(results) > 1:
-                        raise MultipleResultFound()
+                        raise MultipleResultFound(func)
 
                     if cache_time:
                         cache_key = create_key(*args, **kwargs)
-                        cache_adapter.set(
+                        self.cache_adapter.set(
                             cache_key, pickle.dumps(results), cache_time,
                         )
 
-                    results = [cls(**result_formatter(result)) for result in results]
+                    results = [cls(**self.result_formatter(result)) for result in results]
 
                     if not many:
                         results = results[0] if results else None
@@ -96,9 +95,7 @@ def build_fetch_decorator(
 
         return decorator
 
-    return decorator_factory
-
 
 __all__ = [
-    'build_fetch_decorator',
+    'DecoratorFactory',
 ]
