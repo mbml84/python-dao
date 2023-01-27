@@ -8,8 +8,19 @@ packages = [{include = "python_dao"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+pre-commit = "^3.0.1"
+pylint = "^2.15.10"
+eradicate = "^2.1.0"
+pybetter = "^0.4.1"
+autotyping = "^22.9.0"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.autopep8]
+max_line_length = 120
+in-place = true
+recursive = true
+aggressive = 1

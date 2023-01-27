@@ -1,0 +1,86 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: debug-statements
+      - id: double-quote-string-fixer
+      - id: name-tests-test
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+  -   repo: https://github.com/MarcoGorelli/absolufy-imports
+      rev: v0.3.1
+      hooks:
+      -   id: absolufy-imports
+  - repo: https://github.com/hakancelikdev/unimport
+    rev: 33ead41ee30f1d323a9c2fcfd0114297efbbc4d5
+    hooks:
+      - id: unimport
+        args:
+          - --remove
+          - --include-star-import
+          - --ignore-init
+          - --gitignore
+  - repo: https://github.com/asottile/reorder_python_imports
+    rev: v3.9.0
+    hooks:
+      - id: reorder-python-imports
+        args: [--py38-plus, --add-import, "from __future__ import annotations"]
+  - repo: local
+    hooks:
+      - id: pybetter
+        name: pybetter
+        entry: pybetter
+        language: system
+        types: [ python ]
+        args: ["--diff"]
+  - repo: local
+    hooks:
+    -   id: eradicate
+        name: eradicate
+        entry: eradicate
+        language: system
+        types: [python]
+        args: [ "--in-place" ]
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.3.1
+    hooks:
+      - id: pyupgrade
+        args: [--py38-plus]
+  - repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: v2.0.1
+    hooks:
+      - id: autopep8
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.0.0
+    hooks:
+      - id: autoflake
+        args: ["--remove-unused-variables"]
+  - repo: https://github.com/asottile/add-trailing-comma
+    rev: v2.4.0
+    hooks:
+      - id: add-trailing-comma
+        args: [ --py36-plus ]
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.991
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-all, numpy]
+  - repo: https://github.com/dhruvmanila/remove-print-statements
+    rev: v0.5.0
+    hooks:
+      - id: remove-print-statements
+        args: ["--verbose"]
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [ python ]
+  - repo: https://github.com/python-poetry/poetry
+    rev: 1.3.0 # add version here
+    hooks:
+      - id: poetry-check
