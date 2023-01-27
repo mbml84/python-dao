@@ -34,7 +34,7 @@ class DecoratorFactory:
 
     def __call__(
             self,
-            cls: Callable[[Any], object],
+            cls: Callable[..., object],
             many: bool = True,
             raise_exception: bool = False,
             retrieve_from_cache: bool = True,
@@ -44,7 +44,7 @@ class DecoratorFactory:
         Create a decorator for fetching operation.
 
         Args:
-            cls (Callable[[Any], object]): A callable that will create an object.
+            cls (Callable[..., object]): A callable that will create an object.
                 This can be a class.
             many (bool): Indicates if many results will be returned.
                 Default : True
@@ -61,16 +61,16 @@ class DecoratorFactory:
             Callable[[Callable], Callable]: A decorator
         """
 
-        def decorator(func: Callable) -> Callable:
-            def wrapper(*args, **kwargs):
+        def decorator(func: Callable) -> Callable[..., list[object] | object | None]:
+            def wrapper(*args, **kwargs) -> list[object] | object | None:
 
-                results = (
+                objects = (
                     self.cache_adapter.get(create_key(*args, **kwargs))
                     if self.cache_adapter and retrieve_from_cache
                     else None
                 )
 
-                if not results:
+                if not objects:
                     results = self.result_formatter(func(*args, **kwargs))
 
                     if not results and raise_exception:
@@ -79,18 +79,18 @@ class DecoratorFactory:
                     if not many and len(results) > 1:
                         raise MultipleResultFound(func)
 
-                    if cache_time:
+                    if cache_time and self.cache_adapter:
                         cache_key = create_key(*args, **kwargs)
                         self.cache_adapter.set(
                             cache_key, pickle.dumps(results), cache_time,
                         )
 
-                    results = [cls(**result) for result in results]
+                    objects = [cls(**result) for result in results]
 
                     if not many:
-                        results = results[0] if results else None
+                        objects = objects[0] if objects else None
 
-                return results
+                return objects
 
             return wrapper
 

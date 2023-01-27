@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from abc import ABC
 from abc import abstractmethod
+from typing import Any
 
 
 class CacheAdapter(ABC):
@@ -25,7 +26,7 @@ class CacheAdapter(ABC):
         """
 
     @abstractmethod
-    def get(self, key: str | bytes) -> dict | None:
+    def get(self, key: str | bytes) -> list[dict[str, Any]] | None:
         """
         Get from cache
 
