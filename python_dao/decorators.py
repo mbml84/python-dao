@@ -44,7 +44,7 @@ class DecoratorFactory:
         Create a decorator for fetching operation.
 
         Args:
-            cls (Callable[[Any], object]): A callable that will create an object.
+            cls (Callable[..., object]): A callable that will create an object.
                 This can be a class.
             many (bool): Indicates if many results will be returned.
                 Default : True
@@ -61,7 +61,7 @@ class DecoratorFactory:
             Callable[[Callable], Callable]: A decorator
         """
 
-        def decorator(func: Callable) -> Callable:
+        def decorator(func: Callable) -> Callable[..., list[object] | object | None]:
             def wrapper(*args, **kwargs) -> list[object] | object | None:
 
                 objects = (
