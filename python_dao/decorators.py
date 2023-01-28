@@ -65,7 +65,7 @@ class DecoratorFactory:
             def wrapper(*args, **kwargs) -> list[object] | object | None:
                 objects: list[object] | object | None
 
-                cache_key = create_key(many=True, func=func, *args, **kwargs)
+                cache_key = create_key(many=True, func=func.__dict__, *args, **kwargs)
 
                 binary_objects: bytes | None = (
                     self.cache_adapter.get(cache_key)
