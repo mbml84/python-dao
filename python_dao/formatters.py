@@ -15,7 +15,7 @@ class DictFormatter:
             self,
             results: list[dict[str, Any] | list[tuple[str, Any]]],
     ) -> list[dict[str, Any]]:
-        return list(map(dict, results))
+        return [dict(result) for result in results]
 
 
 class ODBCFormatter:
