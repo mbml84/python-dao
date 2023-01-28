@@ -44,7 +44,7 @@ class DecoratorFactory:
         Create a decorator for fetching operation.
 
         Args:
-            cls (Callable[..., object]): A callable that will create an object.
+            cls (Callable[[...], object]): A callable that will create an object.
                 This can be a class.
             many (bool): Indicates if many results will be returned.
                 Default : True
@@ -63,14 +63,18 @@ class DecoratorFactory:
 
         def decorator(func: Callable) -> Callable[..., list[object] | object | None]:
             def wrapper(*args, **kwargs) -> list[object] | object | None:
+                objects: list[object] | object | None
 
-                objects = (
-                    self.cache_adapter.get(create_key(*args, **kwargs))
+                cache_key = create_key(many=True, func=func, *args, **kwargs)
+
+                binary_objects: bytes | None = (
+                    self.cache_adapter.get(cache_key)
                     if self.cache_adapter and retrieve_from_cache
                     else None
                 )
-
-                if not objects:
+                if binary_objects:
+                    results = pickle.loads(binary_objects)
+                else:
                     results = self.result_formatter(func(*args, **kwargs))
 
                     if not results and raise_exception:
@@ -80,15 +84,14 @@ class DecoratorFactory:
                         raise MultipleResultFound(func)
 
                     if cache_time and self.cache_adapter:
-                        cache_key = create_key(*args, **kwargs)
                         self.cache_adapter.set(
                             cache_key, pickle.dumps(results), cache_time,
                         )
 
-                    objects = [cls(**result) for result in results]
+                objects = [cls(**result) for result in results]
 
-                    if not many:
-                        objects = objects[0] if objects else None
+                if not many:
+                    objects = objects[0] if objects else None
 
                 return objects
 
