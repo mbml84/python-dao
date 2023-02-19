@@ -47,6 +47,7 @@ class LazyObject:
         """
         factory = self.__dict__.pop('_factory')
         kwargs = self.__dict__.pop('_kwargs')
+
         self.wrapped = factory(**kwargs)
         self.is_init = True
 
