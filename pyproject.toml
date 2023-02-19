@@ -9,7 +9,7 @@ packages = [{include = "python_dao"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 pre-commit = "^3.0.1"
-pylint = "^2.15.10"
+pylint = "^2.16.2"
 eradicate = "^2.1.0"
 pybetter = "^0.4.1"
 autotyping = "^23.2.0"
