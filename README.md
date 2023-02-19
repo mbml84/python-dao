@@ -1,6 +1,6 @@
 # Python DAO
 
-An easy to use package to implement DAO pattern with your existing objects.
+A tool to create custom objects from database outputs
 
 ## Installation
 
