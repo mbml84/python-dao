@@ -37,14 +37,14 @@ tests-no-zope = ["cloudpickle", "cloudpickle", "hypothesis", "hypothesis", "mypy
 
 [[package]]
 name = "autotyping"
-version = "22.9.0"
+version = "23.2.0"
 description = "A tool for autoadding simple type annotations."
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 files = [
-    {file = "autotyping-22.9.0-py3-none-any.whl", hash = "sha256:548c325b998f46df78b23361c571ae16e1be334825d10608b442435748d7715a"},
-    {file = "autotyping-22.9.0.tar.gz", hash = "sha256:9b96b36ec8e60683624cc1b67507e1f67aae78e9fa2ae1252ce5ec11c414ad29"},
+    {file = "autotyping-23.2.0-py3-none-any.whl", hash = "sha256:14ac889bc359c9c031248e0d451441d154d184406c017569a0907749d9b0a903"},
+    {file = "autotyping-23.2.0.tar.gz", hash = "sha256:f9f523d35d799be53bed69e49adcd3bdb8deb9d20d92938d21168cb476f85291"},
 ]
 
 [package.dependencies]

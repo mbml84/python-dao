@@ -12,7 +12,7 @@ pre-commit = "^3.0.4"
 pylint = "^2.16.2"
 eradicate = "^2.1.0"
 pybetter = "^0.4.1"
-autotyping = "^22.9.0"
+autotyping = "^23.2.0"
 pytest = "^7.2.1"
 
 
