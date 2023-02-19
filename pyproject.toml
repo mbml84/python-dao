@@ -25,3 +25,8 @@ max_line_length = 120
 in-place = true
 recursive = true
 aggressive = 1
+
+
+[project.urls]
+"Homepage" = "https://github.com/mbml84/python-dao"
+"Bug Tracker" = "https://github.com/mbml84/python-dao/issues"
