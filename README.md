@@ -19,7 +19,7 @@ A tool to create custom objects from database outputs
             self.age = age
 
 
-    @decorator(Person):
+    @decorator(Person)
     def get_persons_from_db() -> list[Person]:
         # Your code to fetch data from DB
         results = ...
