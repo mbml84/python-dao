@@ -4,7 +4,7 @@
 name = "astroid"
 version = "2.14.2"
 description = "An abstract syntax tree for Python with inference support."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7.2"
 files = [
@@ -20,7 +20,7 @@ wrapt = {version = ">=1.14,<2", markers = "python_version >= \"3.11\""}
 name = "attrs"
 version = "22.2.0"
 description = "Classes Without Boilerplate"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -39,7 +39,7 @@ tests-no-zope = ["cloudpickle", "cloudpickle", "hypothesis", "hypothesis", "mypy
 name = "autotyping"
 version = "23.2.0"
 description = "A tool for autoadding simple type annotations."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -54,7 +54,7 @@ libcst = "*"
 name = "cfgv"
 version = "3.3.1"
 description = "Validate configuration and produce human readable error messages."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6.1"
 files = [
@@ -66,7 +66,7 @@ files = [
 name = "click"
 version = "8.1.3"
 description = "Composable command line interface toolkit"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -81,7 +81,7 @@ colorama = {version = "*", markers = "platform_system == \"Windows\""}
 name = "colorama"
 version = "0.4.6"
 description = "Cross-platform colored terminal text."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 files = [
@@ -93,7 +93,7 @@ files = [
 name = "dill"
 version = "0.3.6"
 description = "serialize all of python"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -108,7 +108,7 @@ graph = ["objgraph (>=1.7.2)"]
 name = "distlib"
 version = "0.3.6"
 description = "Distribution utilities"
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 files = [
@@ -120,7 +120,7 @@ files = [
 name = "eradicate"
 version = "2.1.0"
 description = "Removes commented-out code."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 files = [
@@ -132,7 +132,7 @@ files = [
 name = "filelock"
 version = "3.9.0"
 description = "A platform independent file lock."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -148,7 +148,7 @@ testing = ["covdefaults (>=2.2.2)", "coverage (>=7.0.1)", "pytest (>=7.2)", "pyt
 name = "hypothesis"
 version = "6.68.2"
 description = "A library for property-based testing"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -180,7 +180,7 @@ zoneinfo = ["backports.zoneinfo (>=0.2.1)", "tzdata (>=2022.7)"]
 name = "hypothesmith"
 version = "0.1.9"
 description = "Hypothesis strategies for generating Python programs, something like CSmith"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -197,7 +197,7 @@ libcst = ">=0.3.8"
 name = "identify"
 version = "2.5.18"
 description = "File identification library for Python"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -212,7 +212,7 @@ license = ["ukkonen"]
 name = "iniconfig"
 version = "2.0.0"
 description = "brain-dead simple config-ini parsing"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -224,7 +224,7 @@ files = [
 name = "isort"
 version = "5.12.0"
 description = "A Python utility / library to sort Python imports."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.8.0"
 files = [
@@ -242,7 +242,7 @@ requirements-deprecated-finder = ["pip-api", "pipreqs"]
 name = "lark-parser"
 version = "0.12.0"
 description = "a modern parsing library"
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 files = [
@@ -259,7 +259,7 @@ regex = ["regex"]
 name = "lazy-object-proxy"
 version = "1.9.0"
 description = "A fast and thorough lazy object proxy."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -305,7 +305,7 @@ files = [
 name = "libcst"
 version = "0.4.9"
 description = "A concrete syntax tree with AST-like properties for Python 3.5, 3.6, 3.7, 3.8, 3.9, and 3.10 programs."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -353,7 +353,7 @@ dev = ["Sphinx (>=5.1.1)", "black (==22.10.0)", "coverage (>=4.5.4)", "fixit (==
 name = "mccabe"
 version = "0.7.0"
 description = "McCabe checker, plugin for flake8"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -365,7 +365,7 @@ files = [
 name = "mypy-extensions"
 version = "1.0.0"
 description = "Type system extensions for programs checked with the mypy type checker."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.5"
 files = [
@@ -377,7 +377,7 @@ files = [
 name = "nodeenv"
 version = "1.7.0"
 description = "Node.js virtual environment builder"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*"
 files = [
@@ -392,7 +392,7 @@ setuptools = "*"
 name = "packaging"
 version = "23.0"
 description = "Core utilities for Python packages"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -404,7 +404,7 @@ files = [
 name = "platformdirs"
 version = "3.0.0"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -420,7 +420,7 @@ test = ["appdirs (==1.4.4)", "covdefaults (>=2.2.2)", "pytest (>=7.2.1)", "pytes
 name = "pluggy"
 version = "1.0.0"
 description = "plugin and hook calling mechanisms for python"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -434,14 +434,14 @@ testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "pre-commit"
-version = "3.0.4"
+version = "3.1.0"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pre_commit-3.0.4-py2.py3-none-any.whl", hash = "sha256:9e3255edb0c9e7fe9b4f328cb3dc86069f8fdc38026f1bf521018a05eaf4d67b"},
-    {file = "pre_commit-3.0.4.tar.gz", hash = "sha256:bc4687478d55578c4ac37272fe96df66f73d9b5cf81be6f28627d4e712e752d5"},
+    {file = "pre_commit-3.1.0-py2.py3-none-any.whl", hash = "sha256:7001dfcd174540658822b1fd3630ceadf4f41375a5d1844b5c3b3830f227348c"},
+    {file = "pre_commit-3.1.0.tar.gz", hash = "sha256:61bd9f1b96d3d1e763f2a9a0f8522aed341646800642ff6803c73fac5781f5b7"},
 ]
 
 [package.dependencies]
@@ -455,7 +455,7 @@ virtualenv = ">=20.10.0"
 name = "pybetter"
 version = "0.4.1"
 description = "Tool for fixing trivial problems with your code."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">3.6"
 files = [
@@ -474,7 +474,7 @@ pygments = ">=2.5.2,<3.0.0"
 name = "pyemojify"
 version = "0.2.0"
 description = "Substitutes emoji aliases (like :sparkling_heart:) to emoji raw characters."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 files = [
@@ -489,7 +489,7 @@ click = ">=4.1"
 name = "pygments"
 version = "2.14.0"
 description = "Pygments is a syntax highlighting package written in Python."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -504,7 +504,7 @@ plugins = ["importlib-metadata"]
 name = "pylint"
 version = "2.16.2"
 description = "python code static checker"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7.2"
 files = [
@@ -529,7 +529,7 @@ testutils = ["gitpython (>3)"]
 name = "pytest"
 version = "7.2.1"
 description = "pytest: simple powerful testing with Python"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -551,7 +551,7 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.
 name = "pyyaml"
 version = "6.0"
 description = "YAML parser and emitter for Python"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -601,7 +601,7 @@ files = [
 name = "setuptools"
 version = "67.3.2"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -618,7 +618,7 @@ testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (
 name = "sortedcontainers"
 version = "2.4.0"
 description = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 files = [
@@ -630,7 +630,7 @@ files = [
 name = "tomlkit"
 version = "0.11.6"
 description = "Style preserving TOML library"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -642,7 +642,7 @@ files = [
 name = "typing-extensions"
 version = "4.5.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -654,7 +654,7 @@ files = [
 name = "typing-inspect"
 version = "0.8.0"
 description = "Runtime inspection utilities for typing module."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 files = [
@@ -670,7 +670,7 @@ typing-extensions = ">=3.7.4"
 name = "virtualenv"
 version = "20.19.0"
 description = "Virtual Python Environment builder"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -691,7 +691,7 @@ test = ["covdefaults (>=2.2.2)", "coverage (>=7.1)", "coverage-enable-subprocess
 name = "wrapt"
 version = "1.14.1"
 description = "Module for decorators, wrappers and monkey patching."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 files = [
@@ -764,4 +764,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "fcd391e88378062b9f797c8013bcb858e42509e0cbb013c3a5a7a5a111c7af93"
+content-hash = "10b4219e0a918e43f4df86b6d8d6dba82a5d10de5592b0d9debe9b08ab10f3ca"
