@@ -16,7 +16,7 @@ python = "^3.11"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^3.1.1"
-pylint = "^2.16.3"
+pylint = "^2.17.0"
 eradicate = "^2.1.0"
 pybetter = "^0.4.1"
 autotyping = "^23.2.0"
