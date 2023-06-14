@@ -15,7 +15,7 @@ classifiers = [
 python = "^3.11"
 
 [tool.poetry.dev-dependencies]
-pre-commit = "^3.3.2"
+pre-commit = "^3.3.3"
 pylint = "^2.17.4"
 eradicate = "^2.2.0"
 pybetter = "^0.4.1"
